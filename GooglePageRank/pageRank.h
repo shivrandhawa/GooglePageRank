@@ -35,21 +35,14 @@ public:
 		{
 			size++;
 			getline(inFile, text);
-			// myVector.push_back(text);
 
 			textfull.append(text);
-			//cout<<"vectorOutput   "+myVector[i++]<<endl;
 		}
 		inFile.close();
-		//  size = myVector.size();  only need this if using vector
 		cout << "array size: " << size << endl;
-		//removing whitespace.
+		//removing whitespace using regex
 		textfull = std::regex_replace(textfull, std::regex("\\s+"), "");
-
-
 		cout << "compressed text: " + textfull << endl;
-
-
 
 		for (int i = 0; i < size; i++) {
 			vector<float>temp;
@@ -63,8 +56,6 @@ public:
 			myVector.push_back(temp);
 		}
 	}
-
-
 };
 
 
@@ -117,7 +108,7 @@ public:
 				float f = myVector1[i][j] / colSum;
 				if (f != f) {
 					myVector2[i][j] = 1 / (float)size1;
-					cout << myVector2[i][j] << " ,c ";
+					cout << myVector2[i][j] << " , ";
 
 				}
 				else {
