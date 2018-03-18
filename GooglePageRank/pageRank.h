@@ -106,6 +106,7 @@ public:
 				}
 
 				float f = myVector1[i][j] / colSum;
+				//checks if f is NaN
 				if (f != f) {
 					myVector2[i][j] = 1 / (float)size1;
 					cout << myVector2[i][j] << " , ";
