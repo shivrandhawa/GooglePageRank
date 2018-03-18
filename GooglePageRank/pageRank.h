@@ -73,7 +73,7 @@ public:
 		myVector2 = m.myVector;
 		size1 = m.size;
 	}
-	void printMatrix() {
+	void printMatrix(vector<vector<float>>) {
 		std::vector< std::vector<float> >::const_iterator row;
 		std::vector<float>::const_iterator col;
 
