@@ -60,6 +60,7 @@ public:
 
 
 class sMatrix {
+	static constexpr float p = 0.85;
 	int size1;
 	vector<vector<float>> myVector1;
 	vector<vector<float>> myVector2;
@@ -123,7 +124,22 @@ public:
 
 
 	}
+	void transMatrix() {
+		float val_vector1;
+		float val_vector2;
+		for (int i = 0; i < size1; i++) {
+			for (int j = 0; j <size1; j++) {
+				// myVector1[i][j] = ((float) 1/size1) * (1-p );
+				//myVector2[i][j] *= p;
+				val_vector1 = myVector1[i][j] = ((float)1 / size1) * (1 - p);
+				val_vector2 = myVector2[i][j] *= p;
+				//myVector2 is now the Tranistion matrix.
+				myVector2[i][j] = val_vector1 + val_vector2;
 
+			}
+		}
+
+	}
 
 };
 
