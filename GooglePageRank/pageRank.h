@@ -92,11 +92,8 @@ public:
 
 		for (int i = 0; i <size1; i++)
 		{
-
-			cout << endl;
 			for (int j = 0; j<size1; j++)
 			{
-				//int jj = 0;
 				for (int jj = 0; jj < size1; jj++)
 				{
 					if (myVector1[jj][j] == 1)
@@ -110,12 +107,9 @@ public:
 				//checks if f is NaN
 				if (f != f) {
 					myVector2[i][j] = 1 / (float)size1;
-					cout << myVector2[i][j] << " , ";
-
 				}
 				else {
 					myVector2[i][j] = myVector1[i][j] / colSum;
-					cout << myVector2[i][j] << " , ";
 					colSum = 0;
 				}
 
@@ -145,10 +139,34 @@ public:
 		float val_vector2 = 0;
 		vector<float> rank(size1, 1);
 		vector<float> ranked(size1, 1);
+		//keep looping untill if val_vector2 == rank[i] then set false
+		while (x == true) {
+			float val_rank = 0;
+			for (int i = 0; i<size1; i++) {
+				val_rank = rank[i];
+				for (j = 0; j<size1; j++) {
+					val_vector2 += myVector2[i][j] * rank[j];
 
+				}
+				if (val_vector2 == rank[i]) {
+					x = false;
 
-
+				}
+				ranked[i] = val_vector2;
+				val_vector2 = 0;
+			}
+			rank = ranked;
+		}
+		for (int k = 0; k< size1; k++) {
+			sum += rank[k];
+		}
+		char letter = 'A';
+		for (int k = 0; k< size1; k++) {
+			 rank[k] = rank[k]/sum;
+            cout<< letter++<<": " << rank[k]<<endl;
+		}
 	}
+
 };
 
 #endif /* Header_h */
