@@ -8,7 +8,7 @@ int main()
 	sMatrix t{ m };
 	t.printMatrix(m.myVector);
 	t.getStoiMatrix();
-	std::cout << "Main method ran to completion" << std::endl;
+	cout << "Main method ran to completion" << std::endl;
 	system("pause");
 	return 0;
 }
