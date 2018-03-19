@@ -5,9 +5,7 @@
 //  Copyright © 2018 Shiv Randhawa. All rights reserved.
 //
 
-#ifndef Header_h
-
-#define Header_h
+#pragma once
 #include <regex>
 #include <fstream>
 #include <vector>
@@ -29,7 +27,6 @@ public:
 		ifstream inFile;
 		int ch = 0;
 
-
 		inFile.open("connectivity.txt");
 		while (!inFile.eof())
 		{
@@ -39,11 +36,11 @@ public:
 			textfull.append(text);
 		}
 		inFile.close();
-		cout << "array size: " << size << endl;
+		//cout << "array size: " << size << endl;
 		//removing whitespace using regex
 		textfull = std::regex_replace(textfull, std::regex("\\s+"), "");
-		cout << "compressed text: " + textfull << endl;
-
+		//all text in the file compressed(trimmed whitespace)
+		//cout << "compressed text: " + textfull << endl;
 		for (int i = 0; i < size; i++) {
 			vector<float>temp;
 			for (int j = 0; j < size; j++) {
@@ -90,9 +87,9 @@ public:
 	}
 	void getStoiMatrix() {
 
-		for (int i = 0; i <size1; i++)
+		for (int i = 0; i < size1; i++)
 		{
-			for (int j = 0; j<size1; j++)
+			for (int j = 0; j < size1; j++)
 			{
 				for (int jj = 0; jj < size1; jj++)
 				{
@@ -118,11 +115,11 @@ public:
 
 
 	}
-	void transMatrix() {
+	void build_transMatrix() {
 		float val_vector1;
 		float val_vector2;
 		for (int i = 0; i < size1; i++) {
-			for (int j = 0; j <size1; j++) {
+			for (int j = 0; j < size1; j++) {
 				val_vector1 = myVector1[i][j] = ((float)1 / size1) * (1 - p);
 				val_vector2 = myVector2[i][j] *= p;
 				//myVector2 is now the Tranistion matrix.
@@ -132,8 +129,8 @@ public:
 		}
 
 	}
-	void mult_matrix() {
-		float sum = 0.00;
+	void calc_pagerank() {
+		float sum = 0.000;
 		bool x = true;
 		int j = 0;
 		float val_vector2 = 0;
@@ -142,9 +139,9 @@ public:
 		//keep looping untill if val_vector2 == rank[i] then set false
 		while (x == true) {
 			float val_rank = 0;
-			for (int i = 0; i<size1; i++) {
+			for (int i = 0; i < size1; i++) {
 				val_rank = rank[i];
-				for (j = 0; j<size1; j++) {
+				for (j = 0; j < size1; j++) {
 					val_vector2 += myVector2[i][j] * rank[j];
 
 				}
@@ -157,16 +154,15 @@ public:
 			}
 			rank = ranked;
 		}
-		for (int k = 0; k< size1; k++) {
+		for (int k = 0; k < size1; k++) {
 			sum += rank[k];
 		}
 		char letter = 'A';
-		for (int k = 0; k< size1; k++) {
-			 rank[k] = rank[k]/sum;
-            cout<< letter++<<": " << rank[k]<<endl;
+		for (int k = 0; k < size1; k++) {
+			rank[k] = rank[k] / sum;
+			//cout<< letter++<<": " << rank[k]<<endl;
+			printf(" %c:  %0.4f  \n", letter++, rank[k]);
 		}
 	}
 
 };
-
-#endif /* Header_h */

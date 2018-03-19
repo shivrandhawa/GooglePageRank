@@ -7,8 +7,8 @@ int main()
 	getMatrix m;
 	sMatrix t{ m };
 	t.getStoiMatrix();
-	t.transMatrix();
-	t.mult_matrix();
+	t.build_transMatrix();
+	t.calc_pagerank();
 	cout << "Main method ran to completion" << std::endl;
 	system("pause");
 	return 0;
