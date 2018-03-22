@@ -1,6 +1,7 @@
 //  Header.h
 //  PageRank
-//
+//	Header file for PageRank.cpp
+//	contains the classes and methods for calculating PageRank.
 //  Created by Shiv Randhawa on 2018-03-16.
 //  Copyright © 2018 Shiv Randhawa. All rights reserved.
 //
@@ -85,6 +86,7 @@ public:
 			cout << endl;
 		}
 	}
+	//builds the stoicastic matrix
 	void getStoiMatrix() {
 
 		for (int i = 0; i < size1; i++)
@@ -136,7 +138,9 @@ public:
 		float val_vector2 = 0;
 		vector<float> rank(size1, 1);
 		vector<float> ranked(size1, 1);
-		//keep looping untill if val_vector2 == rank[i] then set false
+		
+		//keep looping untill if val_vector2 == rank[i] then set false and break out of loop
+
 		while (x == true) {
 			float val_rank = 0;
 			for (int i = 0; i < size1; i++) {
@@ -157,12 +161,17 @@ public:
 		for (int k = 0; k < size1; k++) {
 			sum += rank[k];
 		}
+		//printing page rank in a file called Rank.txt
+		ofstream os("Rank.txt");
 		char letter = 'A';
 		for (int k = 0; k < size1; k++) {
 			rank[k] = rank[k] / sum;
-			//cout<< letter++<<": " << rank[k]<<endl;
-			printf(" %c:  %0.4f  \n", letter++, rank[k]);
+			os << letter++ << ": " << rank[k] << endl;
+		//		printf(" %c:  %0.4f  \n", letter, rank[k]);
+
+
 		}
+
 	}
 
 };
